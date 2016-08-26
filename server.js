@@ -40,7 +40,7 @@ var sort_by = function(field, reverse, primer){
 
 server.use('/', express.static(__dirname + '/'));
 
-var io = socket(server.listen(8080));
+var io = socket(server.listen(process.env.PORT || 8080));
 io.on('connection', function(socketHandle) {
 	console.log('client connected');
     //on connection send user a new userName
