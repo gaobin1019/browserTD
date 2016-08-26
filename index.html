@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p>Welcome</p>
+                        <input type="text" class="form-control" id="userName" placeholder="">
+                        <button type="button" class="btn btn-primary" id="changeName">
+                            Change Name
+                        </button>
+                        <!--
+                        <input type="text" class="form-control" id="nameInput" placeholder="Change your name">
+                        <button type="button" class="btn btn-primary" id="changeName">
+                            Confirm
+                        </button>      todo!!!!
+                        -->
+                    </li>
+                    <li class="list-group-item">
+                        <div id="money">Gold: $<span id="gold">500</span></div>
+                    </li>
+                    <li class="list-group-item">
+                        <div id="score">Scored:<span id="scoredPoints">0</span></div>
+                    </li>
+                    <li class="list-group-item">
+                        <div id="escaped">Escaped:<span id="escapedNum">0</span></div>
+                    </li>
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-primary" id="pause">
+                            Pause Game
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <canvas id="canvas1" width="600" height="600" style="position: absolute; left: 0; top: 0; z-index: 0; border:1px solid #000;"></canvas>
+                    <canvas id="canvas2" width="600" height="600" style="position: absolute; left: 0; top: 0; z-index: 1; border:1px solid #000;"></canvas>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p>$50</p>
+                        <button type="button" class="btn btn-primary" id="tower1">
+                            Tower1
+                        </button>
+                        Normal
+                    </li>
+                    <li class="list-group-item">
+                        <p>$70</p>
+                        <button type="button" class="btn btn-primary" id="tower2">
+                            Tower2
+                        </button>
+                        Slow
+                    </li>
+                    <li class="list-group-item">
+                        <p>$100</p>
+                        <button type="button" class="btn btn-primary" id="tower3">
+                            Tower3
+                        </button>
+                        Split
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                Leaderboard
+                <ul class="list-group" id="leaderboard"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!--Update leaderboard using data from server-->
+    <script type="text/javascript">
+		var socket = io.connect('http://localhost:8080/'); // do not change this line
+        var res;
+
+        socket.on('newName',function(msg){
+            jQuery('#userName').val(msg.userName);
+        });
+
+		socket.on('sortedBoard',function(msg){
+            res = msg.userName+" score: "+msg.score;
+			jQuery("#leaderboard").text(res);
+		});
+	</script>
+
+    <script src="path.js" type="text/javascript"></script>
+    <script src="enemy.js" type="text/javascript"></script>
+    <script src="mouse.js" type="text/javascript"></script>
+    <script src="tower.js" type="text/javascript"></script>
+    <script src="bullets.js" type="text/javascript"></script>
+    <script src="mainloop.js" type="text/javascript"></script>
+</body>
+</html>
