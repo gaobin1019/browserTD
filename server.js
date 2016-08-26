@@ -66,6 +66,6 @@ io.on('connection', function(socketHandle) {
     });
 
     //after connection update leaderboard based on local file
-    socketHandle.emit('sortedBoard', user_Scores);
+    io.emit('sortedBoard', user_Scores);
 
 });
