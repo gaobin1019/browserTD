@@ -1,0 +1,18 @@
+{
+  "name": "towerdefense",
+  "version": "1.0.0",
+  "description": "havefun",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Bin Gao",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "fs": "0.0.1-security",
+    "jsonfile": "^2.3.1",
+    "socketio": "^1.0.0"
+  }
+}

@@ -14,7 +14,7 @@ jsonfile.readFile(file, function(err, obj) {
     if(obj)
         user_Scores = obj;
 
-    console.log(user_Scores);
+    console.log("database record: "+user_Scores);
 });
 
 var getUserNameAndScore = function(name,score){
@@ -55,12 +55,13 @@ io.on('connection', function(socketHandle) {
     });
     //when lost, store userName and store to local file
     socketHandle.on('lost',function(msg){
-        console.log(msg);
+        console.log("sending score to server:"+msg);
         user_Scores.push(getUserNameAndScore(userName,msg.score));
         if(user_Scores)
             user_Scores.sort(sort_by('userScore', true, false));
         jsonfile.writeFile(file, user_Scores, function (err) {
-            console.error(err)
+            if(err)
+                console.error(err)
         })
     });
 
