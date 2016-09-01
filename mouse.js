@@ -21,7 +21,7 @@ jQuery('#pause')
             jQuery(this).text('Resume');
         }
         else{
-            intervalId = setInterval(logicLoop,5);
+            intervalId = setInterval(logicLoop,GAME_SPEED);
             jQuery(this).text('Pause Game');
             paused = false;
         }

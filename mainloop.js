@@ -1,6 +1,7 @@
 const ENEMY_W = 20;
 const ENEMY_H = 20;
 const DISPLAY_LEADERBOARD_LENGTH = 10;
+const GAME_SPEED = 10;
 
 var canvas1 = document.getElementById('canvas1');
 var canvas2 = document.getElementById('canvas2');
@@ -41,7 +42,7 @@ window.onload = function(){
             jQuery('#leaderboard').text("------------");
         }
     });
-    intervalId = setInterval(logicLoop, 5);
+    intervalId = setInterval(logicLoop, GAME_SPEED);
     renderLoop();
 };
 
